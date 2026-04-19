@@ -1,0 +1,327 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-win: var(--win);
+  --color-lose: var(--lose);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --font-sans:
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', ui-sans-serif,
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ==================== 主题色卡定义 ==================== */
+
+/* 默认极简主题（所有职业通用） */
+[data-theme="default"] {
+  --theme-bg-page: #FFFFFF;
+  --theme-bg-card: #F5F5F5;
+  --theme-primary: #333333;
+  --theme-primary-light: #F5F5F5;
+  --theme-primary-dark: #1a1a1a;
+  --theme-accent: #666666;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #999999;
+}
+
+/* 蓝岸白昼（神相/沧澜/碎梦/潮光） */
+[data-theme="blue"] {
+  --theme-bg-page: #DFF2FC;
+  --theme-bg-card: #FCF8E7;
+  --theme-primary: #A6D0F1;
+  --theme-primary-light: #E8F6FC;
+  --theme-primary-dark: #7AB8E0;
+  --theme-accent: #95C2E2;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #888888;
+}
+
+/* 月落星沉（玄机/鸿音/铁衣） */
+[data-theme="moon"] {
+  --theme-bg-page: #FEFFEA;
+  --theme-bg-card: #FEF98E;
+  --theme-primary: #FEFBB4;
+  --theme-primary-light: #FFFDE0;
+  --theme-primary-dark: #E8D580;
+  --theme-accent: #F4D85E;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #888888;
+}
+
+/* 竹露青提（龙吟） */
+[data-theme="green"] {
+  --theme-bg-page: #FFFEE9;
+  --theme-bg-card: #E5FFDE;
+  --theme-primary: #D1E4CA;
+  --theme-primary-light: #EEF7E8;
+  --theme-primary-dark: #8AAA78;
+  --theme-accent: #99BF8E;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #888888;
+}
+
+/* 莓莓粉荔（素问） */
+[data-theme="pink"] {
+  --theme-bg-page: #FFFFF2;
+  --theme-bg-card: #FFDDE7;
+  --theme-primary: #FFE0DF;
+  --theme-primary-light: #FFF0F2;
+  --theme-primary-dark: #E8A8A8;
+  --theme-accent: #FFC2D1;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #888888;
+}
+
+/* 浪漫红色（血河）- 深色背景特殊处理 */
+[data-theme="red"] {
+  --theme-bg-page: #080808;
+  --theme-bg-card: #1A1A1A;
+  --theme-primary: #C4192C;
+  --theme-primary-light: #2A1A1A;
+  --theme-primary-dark: #8B1A1A;
+  --theme-accent: #86040F;
+  --theme-text-primary: #FFFFFF;
+  --theme-text-secondary: #CCCCCC;
+  --theme-text-muted: #999999;
+}
+
+/* 淡雅浅紫（九灵） */
+[data-theme="purple"] {
+  --theme-bg-page: #F8F7FF;
+  --theme-bg-card: #F0EDF5;
+  --theme-primary: #A98CB5;
+  --theme-primary-light: #F4F2F7;
+  --theme-primary-dark: #8B6E99;
+  --theme-accent: #D4C4D8;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #888888;
+}
+
+/* ==================== :root 默认值 ==================== */
+
+:root {
+  --radius: 0.625rem;
+  
+  /* 默认极简主题作为 fallback */
+  --background: #FFFFFF;
+  --foreground: #1a1a1a;
+  --card: #F5F5F5;
+  --card-foreground: #1a1a1a;
+  --popover: #FFFFFF;
+  --popover-foreground: #1a1a1a;
+  --primary: #333333;
+  --primary-foreground: #ffffff;
+  --secondary: #F5F5F5;
+  --secondary-foreground: #666666;
+  --muted: #f0f0f0;
+  --muted-foreground: #999999;
+  --accent: #F5F5F5;
+  --accent-foreground: #333333;
+  --destructive: #dc2626;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #333333;
+  --gold: #d4af37;
+  --gold-light: #f4d03f;
+  --win: #22c55e;
+  --lose: #ef4444;
+  
+  /* 主题变量默认值 */
+  --theme-primary: #333333;
+  --theme-primary-light: #F5F5F5;
+  --theme-primary-dark: #1a1a1a;
+  --theme-bg-page: #FFFFFF;
+  --theme-bg-card: #F5F5F5;
+  --theme-accent: #666666;
+  --theme-text-primary: #1a1a1a;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #999999;
+  
+  /* 过渡动画 */
+  --theme-transition: 0.3s ease;
+}
+
+/* ==================== 主题应用层 ==================== */
+
+[data-theme] {
+  --background: var(--theme-bg-page);
+  --foreground: var(--theme-text-primary);
+  --card: var(--theme-bg-card);
+  --card-foreground: var(--theme-text-primary);
+  --popover: var(--theme-bg-card);
+  --popover-foreground: var(--theme-text-primary);
+  --primary: var(--theme-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--theme-bg-card);
+  --secondary-foreground: var(--theme-text-secondary);
+  --muted: var(--theme-bg-card);
+  --muted-foreground: var(--theme-text-muted);
+  --accent: var(--theme-primary-light);
+  --accent-foreground: var(--theme-primary);
+  --border: var(--theme-accent);
+  --input: var(--theme-bg-card);
+  --ring: var(--theme-primary);
+  --gold: var(--theme-primary);
+  --gold-light: var(--theme-accent);
+}
+
+/* 主题过渡效果 */
+[data-theme],
+[data-theme] * {
+  transition: 
+    background-color var(--theme-transition),
+    border-color var(--theme-transition),
+    color var(--theme-transition);
+}
+
+/* 全局过渡效果 - 排除不需要过渡的元素 */
+.global-transition,
+button,
+a,
+input,
+select,
+textarea,
+.card,
+.nav-link {
+  transition: 
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-accent);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary);
+}
+
+/* 金色渐变文字 - 根据主题变化 */
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-accent) 50%, var(--theme-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 金色边框 */
+.gold-border {
+  border: 1px solid var(--gold);
+}
+
+/* 卡片悬停效果 */
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 胜率颜色 */
+.win-color {
+  color: var(--win);
+}
+
+.lose-color {
+  color: var(--lose);
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 输入框样式 - 使用主题变量 */
+input, select, textarea {
+  background: var(--theme-bg-card);
+  color: var(--theme-text-primary);
+  border-color: var(--theme-accent);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--theme-text-muted);
+}
+
+/* 简化阴影 */
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 深色主题特殊处理 */
+[data-theme="red"] .card,
+[data-theme="red"] input,
+[data-theme="red"] select,
+[data-theme="red"] textarea {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="red"] .card-hover:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 禁用过渡的元素（避免动画冲突） */
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
